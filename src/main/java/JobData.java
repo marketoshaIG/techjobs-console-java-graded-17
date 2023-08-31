@@ -5,10 +5,7 @@ import org.apache.commons.csv.CSVRecord;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.Reader;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.List;
+import java.util.*;
 
 /**
  * Created by LaunchCode
@@ -74,8 +71,9 @@ public class JobData {
         for (HashMap<String, String> row : allJobs) {
 
             String aValue = row.get(column);
+            String lowercaseValue = aValue.toLowerCase(); //String lowercaseValue = aValue.toLowerCase();
 
-            if (aValue.contains(value)) {
+            if (lowercaseValue.contains(value.toLowerCase())) { // Case-insensitive comparison
                 jobs.add(row);
             }
         }
@@ -93,9 +91,35 @@ public class JobData {
 
         // load data, if not already loaded
         loadData();
+        // Create a LinkedHashSet to hold the results
+        LinkedHashSet<HashMap<String, String>> jobs = new LinkedHashSet<>();
 
-        // TODO - implement this method
-        return null;
+        // Iterate over all of the jobs
+        for (HashMap<String, String> job : allJobs) {
+            boolean foundInJob = false;
+
+            // Check each field in the job
+            for (String fieldValue : job.values()) {
+                String lowercaseFieldValue = fieldValue.toLowerCase(); // Lowercase copy of the field value
+//                System.out.println("fieldValue: " + fieldValue);
+//                System.out.println("search term: " + value);
+
+                // If the field contains the search term, add the job to the results
+                if (lowercaseFieldValue.contains(value.toLowerCase())) { // Case-insensitive comparison
+
+                    foundInJob = true;
+                    break; // No need to check other fields in this job
+                }
+            }
+
+            // If the search term was found in this job, add it to the results
+            if (foundInJob) {
+                jobs.add(job);
+            }
+        }
+
+        // Convert the LinkedHashSet to an ArrayList and return it
+        return new ArrayList<>(jobs);
     }
 
     /**
@@ -124,7 +148,8 @@ public class JobData {
                 HashMap<String, String> newJob = new HashMap<>();
 
                 for (String headerLabel : headers) {
-                    newJob.put(headerLabel, record.get(headerLabel));
+                    //newJob.put(headerLabel, record.get(headerLabel).toLowerCase()); - worked for task 2, but screwd task 3?
+                 newJob.put(headerLabel, record.get(headerLabel));
                 }
 
                 allJobs.add(newJob);
