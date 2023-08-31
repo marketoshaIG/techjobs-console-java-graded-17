@@ -118,24 +118,24 @@ public class TechJobs {
     }
 
     // Print a list of jobs
-    private static void printJobs(ArrayList<HashMap<String, String>> someJobs) {
+    private static void printJobs(ArrayList<HashMap<String, String>> jobs) {
 //make sure format matches
-        if (someJobs.isEmpty()) {
+        if (jobs.isEmpty()) {
             System.out.println("No Results");
             return;
         }
 
-        for (HashMap<String, String> job : someJobs) {
+        // jobs are in the same format as the findByValue()
+        for (HashMap<String, String> job : jobs) {
+            job.put("Skill", job.get("core competency"));
+        }
+        for (HashMap<String, String> job : jobs) {
             System.out.println("*****");
-
             for (String field : job.keySet()) {
                 System.out.println("    " + field + ": " + job.get(field));
             }
-
             System.out.println("*****");
             System.out.println();
-
-
         }
     }
 }
