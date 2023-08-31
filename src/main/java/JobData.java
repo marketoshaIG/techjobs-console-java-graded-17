@@ -97,7 +97,6 @@ public class JobData {
         // Iterate over all of the jobs
         for (HashMap<String, String> job : allJobs) {
             boolean foundInJob = false;
-
             // Check each field in the job
             for (String fieldValue : job.values()) {
                 String lowercaseFieldValue = fieldValue.toLowerCase(); // Lowercase copy of the field value
@@ -111,7 +110,6 @@ public class JobData {
                     break; // No need to check other fields in this job
                 }
             }
-
             // If the search term was found in this job, add it to the results
             if (foundInJob) {
                 jobs.add(job);
@@ -151,7 +149,6 @@ public class JobData {
                     //newJob.put(headerLabel, record.get(headerLabel).toLowerCase()); - worked for task 2, but screwd task 3?
                  newJob.put(headerLabel, record.get(headerLabel));
                 }
-
                 allJobs.add(newJob);
             }
 

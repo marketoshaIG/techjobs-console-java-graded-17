@@ -119,7 +119,7 @@ public class TechJobs {
 
     // Print a list of jobs
     private static void printJobs(ArrayList<HashMap<String, String>> someJobs) {
-
+//make sure format matches
         if (someJobs.isEmpty()) {
             System.out.println("No Results");
             return;
