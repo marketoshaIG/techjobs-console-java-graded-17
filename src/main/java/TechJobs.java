@@ -118,21 +118,18 @@ public class TechJobs {
     }
 
     // Print a list of jobs
-    private static void printJobs(ArrayList<HashMap<String, String>> jobs) {
-//make sure format matches
-        if (jobs.isEmpty()) {
-            System.out.println("No Results");
-            return;
-        }
-
-        for (HashMap<String, String> job : jobs) {
-            System.out.println("*****");
-            System.out.println("    Skill: " + job.get("core competency"));
-            System.out.println("    Position Type: " + job.get("position type"));
-            System.out.println("    Employer: " + job.get("employer"));
-            System.out.println("    Location: " + job.get("location"));
-            System.out.println("*****");
-            System.out.println();
+    private static void printJobs(ArrayList<HashMap<String, String>> someJobs) {
+        if (someJobs.isEmpty()) System.out.print("No Results");
+        else {
+            for (HashMap<String, String> job : someJobs) {
+                System.out.println("\n*****");
+                System.out.println("position type: " + job.get("position type"));
+                System.out.println("name: " + job.get("name"));
+                System.out.println("employer: " + job.get("employer"));
+                System.out.println("location: " + job.get("location"));
+                System.out.println("core competency: " + job.get("core competency"));
+                System.out.println("*****");
+            }
         }
     }
 }
