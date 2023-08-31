@@ -125,15 +125,12 @@ public class TechJobs {
             return;
         }
 
-        // jobs are in the same format as the findByValue()
-        for (HashMap<String, String> job : jobs) {
-            job.put("Skill", job.get("core competency"));
-        }
         for (HashMap<String, String> job : jobs) {
             System.out.println("*****");
-            for (String field : job.keySet()) {
-                System.out.println("    " + field + ": " + job.get(field));
-            }
+            System.out.println("    Skill: " + job.get("core competency"));
+            System.out.println("    Position Type: " + job.get("position type"));
+            System.out.println("    Employer: " + job.get("employer"));
+            System.out.println("    Location: " + job.get("location"));
             System.out.println("*****");
             System.out.println();
         }
