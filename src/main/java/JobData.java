@@ -28,17 +28,24 @@ public class JobData {
 
         // load data, if not already loaded
         loadData();
-
+//        ArrayList<HashMap<String, String>> copyAllJobs = new ArrayList<>();
+//
+//        for (HashMap<String, String> job : allJobs) {
+//            HashMap<String, String> copyJob = new HashMap<>(job);
+//            copyAllJobs.add(copyJob);
+//        }
+//        return copyAllJobs;
+//    }
+//
+//
         ArrayList<String> values = new ArrayList<>();
 
         for (HashMap<String, String> row : allJobs) {
             String aValue = row.get(field);
-
             if (!values.contains(aValue)) {
                 values.add(aValue);
             }
         }
-
         return values;
     }
 
@@ -72,19 +79,10 @@ public class JobData {
                 String columnValue = entry.getValue();
                 if (entry.getKey().equalsIgnoreCase(column) && columnValue.toLowerCase().contains(value.toLowerCase())) {
                     jobs.add(row);
-                    break; // No need to check other fields in this row
+                    break;
                 }
             }
         }
-//        for (HashMap<String, String> row : allJobs) {
-//
-//            String aValue = row.get(column);
-//            String lowercaseValue = aValue.toLowerCase(); //String lowercaseValue = aValue.toLowerCase();
-//
-//            if (lowercaseValue.contains(value.toLowerCase())) { // Case-insensitive comparison
-//                jobs.add(row);
-//            }
-//        }
 
         return jobs;
     }
@@ -104,34 +102,10 @@ public class JobData {
             for (String fieldValue : job.values()) {
                 if (fieldValue.toLowerCase().contains(value.toLowerCase())) {
                     jobs.add(job);
-                    break; // No need to check other fields in this job
+                    break;
                 }
             }
         }
-//        // Create a LinkedHashSet to hold the results
-//        LinkedHashSet<HashMap<String, String>> jobs = new LinkedHashSet<>();
-//
-//        // Iterate over all of the jobs
-//        for (HashMap<String, String> job : allJobs) {
-//            boolean foundInJob = false;
-//            // Check each field in the job
-//            for (String fieldValue : job.values()) {
-//                String lowercaseFieldValue = fieldValue.toLowerCase(); // Lowercase copy of the field value
-////                System.out.println("fieldValue: " + fieldValue);
-////                System.out.println("search term: " + value);
-//
-//                // If the field contains the search term, add the job to the results
-//                if (lowercaseFieldValue.contains(value.toLowerCase())) { // Case-insensitive comparison
-//
-//                    foundInJob = true;
-//                    break; // No need to check other fields in this job
-//                }
-//            }
-//            // If the search term was found in this job, add it to the results
-//            if (foundInJob) {
-//                jobs.add(job);
-//            }
-//        }
 
         // Convert the LinkedHashSet to an ArrayList and return it
         return new ArrayList<>(jobs);
@@ -163,13 +137,13 @@ public class JobData {
                 HashMap<String, String> newJob = new HashMap<>();
 
                 for (String headerLabel : headers) {
-                    //newJob.put(headerLabel, record.get(headerLabel).toLowerCase()); - worked for task 2, but screwd task 3?
+                    //newJob.put(headerLabel, record.get(headerLabel).toLowerCase()); - worked for task 2, but screwd task 3? and didn't pass the test
                  newJob.put(headerLabel, record.get(headerLabel));
                 }
                 allJobs.add(newJob);
             }
 
-            // flag the data as loaded, so we don't do it twice
+            // we keep data from loading twice
             isDataLoaded = true;
 
         } catch (IOException e) {
