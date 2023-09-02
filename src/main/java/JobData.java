@@ -35,8 +35,7 @@ public class JobData {
 //            copyAllJobs.add(copyJob);
 //        }
 //        return copyAllJobs;
-//    }
-//
+//    //
 //
         ArrayList<String> values = new ArrayList<>();
 
@@ -50,11 +49,18 @@ public class JobData {
     }
 
     public static ArrayList<HashMap<String, String>> findAll() {
-
         // load data, if not already loaded
         loadData();
 
-        return allJobs;
+        ArrayList<HashMap<String, String>> copyAllJobs = new ArrayList<>();
+//
+        for (HashMap<String, String> job : allJobs) {
+            HashMap<String, String> copyJob = new HashMap<>(job);
+            copyAllJobs.add(copyJob);
+        }
+
+        return copyAllJobs;
+        //return allJobs;
     }
 
     /**
