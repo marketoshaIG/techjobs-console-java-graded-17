@@ -28,15 +28,7 @@ public class JobData {
 
         // load data, if not already loaded
         loadData();
-//        ArrayList<HashMap<String, String>> copyAllJobs = new ArrayList<>();
-//
-//        for (HashMap<String, String> job : allJobs) {
-//            HashMap<String, String> copyJob = new HashMap<>(job);
-//            copyAllJobs.add(copyJob);
-//        }
-//        return copyAllJobs;
-//    //
-//
+
         ArrayList<String> values = new ArrayList<>();
 
         for (HashMap<String, String> row : allJobs) {
@@ -53,7 +45,6 @@ public class JobData {
         loadData();
 
         ArrayList<HashMap<String, String>> copyAllJobs = new ArrayList<>();
-//
         for (HashMap<String, String> job : allJobs) {
             HashMap<String, String> copyJob = new HashMap<>(job);
             copyAllJobs.add(copyJob);
